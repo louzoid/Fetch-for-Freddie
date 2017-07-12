@@ -13,6 +13,7 @@ function FetchUrls() {
       var mostRecentPromise = Promise.resolve([]);
 
       urls.forEach(url => {
+        var url = decodeURIComponent(url);
         mostRecentPromise = mostRecentPromise.then(urlsSoFar => {
           return fetch(url).then(response => {
             output.push({ url: url, status: response.status, endUrl: response.url });
@@ -26,7 +27,7 @@ function FetchUrls() {
       });
 
       mostRecentPromise.then(allUrls => {
-        console.log(allUrls);
+        //console.log(allUrls);
         resolve(output);
       }).catch(error => {
         return reject(error);

@@ -10,10 +10,12 @@
         function processResults(data) {
             var res = [];
             var row = data.feed.entry;
+            var c = 2;
             $(row).each(function () {
                 var urlToTest = this.gsx$urltotest.$t;
                 var expectedUrl = this.gsx$expectedurl.$t;
-                res.push({ urlToTest: urlToTest, expectedUrl: expectedUrl });
+                res.push({ rowNo: c, urlToTest: urlToTest, expectedUrl: expectedUrl });
+                c++;
             });
             return res;
         }

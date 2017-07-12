@@ -1,14 +1,15 @@
 $(function() {
 
-  $td = $("#res-tbody");
-  $btn = $("#btn");
-  $log = $("#log");
+  var $td = $("#res-tbody");
+  var $btn = $("#btn");
+  var $log = $("#log");
+  var processedResults = 0;
 
   function processBlock(arr) {
 
     var data = "urls=";
     arr.forEach(function(el) {
-      data+=el.urlToTest + ",";
+      data+=encodeURIComponent(el.urlToTest) + ",";
     });
     data = data.slice(0,-1);
     $.getJSON("/fetchUrls", data, function (res) {
@@ -16,6 +17,7 @@ $(function() {
       res.forEach(function(el) {
         var res = el.endUrl === arr[i].expectedUrl ? "good" : "bad"; //only ok to do this because we're processing in order on the server
         var row = `<tr class="${res}">
+        <td>${arr[i].rowNo}</td>
         <td>${el.url}</td>
         <td>${arr[i].expectedUrl}</td>
         <td>${el.status}</td>
@@ -24,6 +26,8 @@ $(function() {
         </tr>`
         $td.prepend(row);
         i++;
+        processedResults++;
+        $log.text("Procesed " + processedResults + " rows");
       });
     }).fail(function () {
       $log.text("Oh dear, something went wrong with this chunk");
@@ -43,6 +47,7 @@ $(function() {
   }
 
   $(btn).on("click", function(e) {
+    processedResults = 0;
     $log.text("Getting rows from Google sheet....");
     var ls = new GoogleSheetLookupService("1TtgH4V9_MSClTGwt21S0Cd-wJehiT5R4USVi88skSbc");
     ls.loadResults(getResults);
