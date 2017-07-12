@@ -16,11 +16,11 @@ function FetchUrls() {
         var url = decodeURIComponent(url);
         mostRecentPromise = mostRecentPromise.then(urlsSoFar => {
           return fetch(url).then(response => {
-            output.push({ url: url, status: response.status, endUrl: response.url });
+            output.push({ url: url, status: response.status, endUrl: response.url, err: "" });
             urlsSoFar.push(response.url);
             return urlsSoFar;
           }).catch(err => {
-            output.push({ url: url, status: err, endUrl: "error resolving this url" });
+            output.push({ url: url, status: "-", endUrl: "error resolving this url" , err: err.message});
             return urlsSoFar;
           });
         });

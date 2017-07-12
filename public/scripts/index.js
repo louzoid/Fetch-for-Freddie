@@ -23,6 +23,7 @@ $(function() {
         <td>${el.status}</td>
         <td>${el.endUrl}</td>
         <td>${res}</td>
+        <td>${el.err}</td>
         </tr>`
         $td.prepend(row);
         i++;
