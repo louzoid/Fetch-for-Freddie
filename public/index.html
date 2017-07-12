@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      th {
+        border-bottom: 2px solid #ddd;
+        padding: 6px;
+      }
+      td {
+        border-bottom: 1px solid #ddd;
+        padding: 6px;
+      }
+      tr.good {
+        background-color: #baffaa;
+      }
+      tr.bad {
+        background-color: #ffaaaa;
+      }
+    </style>
+</head>
+<body>
+  <h1>Url tester for Freddie</h1>
+
+  <p>Referencing Google sheet: <a href="https://docs.google.com/spreadsheets/d/1TtgH4V9_MSClTGwt21S0Cd-wJehiT5R4USVi88skSbc/edit#gid=0" target="_blank">https://docs.google.com/spreadsheets/d/1TtgH4V9_MSClTGwt21S0Cd-wJehiT5R4USVi88skSbc/edit#gid=0</a></p>
+  <p><button id="btn">Start test</button></p>
+  <p id="log"></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Url to test</th>
+        <th>Expected url</th>
+        <th>Status code</th>
+        <th>Actual result</th>
+        <th>Good/Bad?</th>
+      </tr>
+    </thead>
+    <tbody id="res-tbody">
+
+    </tbody>
+  </table>
+
+  <script src="scripts/GoogleSheetLookupService.js" type="text/javascript"></script>
+  <script src="scripts/index.js" type="text/javascript"></script>
+</body>
+</html>
