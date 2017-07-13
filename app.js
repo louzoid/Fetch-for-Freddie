@@ -10,7 +10,6 @@ const app = express();
 // view engine setup
 // app.set('views', path.join(__dirname, 'views/vash'));
 // app.set('view engine', 'vash');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
